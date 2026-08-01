@@ -1,0 +1,44 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+    tags: ["*"]
+  pull_request:
+  release:
+
+# Cancel superseded runs of the same PR / branch to save CI minutes.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  test:
+    name: Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }}
+    runs-on: ${{ matrix.os }}
+    permissions: # needed to allow julia-actions/cache to proactively delete old caches that it has created
+      actions: write
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - 'lts'  # long-term support release
+          - '1'    # latest stable 1.x release
+        os:
+          - ubuntu-latest  # AOCL is only supported on Linux at the moment
+        arch:
+          - x64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: ${{ matrix.version }}
+          arch: ${{ matrix.arch }}
+      - uses: julia-actions/cache@v2
+      - uses: julia-actions/julia-buildpkg@v1
+      - uses: julia-actions/julia-runtest@v1
+        env:
+          # Loading AOCL during the tests can create environment variables (e.g. for OpenMP)
+          # that remain visible after the tests, which the default check would flag.
+          JULIA_TEST_CHECK_MUTATED_ENV: "false"

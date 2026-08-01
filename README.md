@@ -1,5 +1,7 @@
 # AOCL.jl
 
+[![CI](https://github.com/JuliaLinearAlgebra/AOCL.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/JuliaLinearAlgebra/AOCL.jl/actions/workflows/CI.yml)
+
 ## AOCL
 AOCL is a set of numerical libraries optimized for AMD processors based on the
 AMD “Zen” core architecture and generations. Supported processor families are
