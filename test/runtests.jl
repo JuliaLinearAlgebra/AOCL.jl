@@ -66,7 +66,6 @@
 using Test
 using LinearAlgebra
 using Random
-using Libdl
 
 # Set up a debugging fallback function that prints out a stacktrace if the LinearAlgebra
 # tests end up calling a function that we don't have forwarded.

@@ -4,12 +4,12 @@ version = "5.3.1"
 
 [deps]
 AOCL_jll = "b124843c-0c82-53c8-91a7-62bfdd90e290"
-Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 
 [extras]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
+Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 REPL = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
@@ -21,4 +21,4 @@ AOCL_jll = "5.3.1"
 julia = "1.10"
 
 [targets]
-test = ["Dates", "Distributed", "Printf", "Random", "REPL", "Sockets", "Test"]
+test = ["Dates", "Distributed", "Libdl", "Printf", "Random", "REPL", "Sockets", "Test"]
